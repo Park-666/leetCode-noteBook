@@ -55,3 +55,31 @@ public:
         return NULL;
     }
 };
+
+
+/*双指针法，2个指针分别从A、B开始遍历，遍历完交换指向*/
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        
+        /*这里应该检查headA、headB是否为空链表*/
+        
+        ListNode *curA = headA;
+        ListNode *curB = headB;
+        while(curB != curA) {
+            /*A链表遍历完，指向B链表*/
+            curA = (curA == NULL)?headB:curA->next;
+            /*B链表遍历完，指向A链表*/
+            curB = (curB == NULL)?headA:curB->next;
+        }
+        return curA;
+    }
+};
