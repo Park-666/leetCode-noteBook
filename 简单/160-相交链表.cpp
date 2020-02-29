@@ -1,4 +1,4 @@
-/*暴力法，逐个比较节点地址是否相等*/
+/*暴力法，逐个比较A链表和B链表各个节点地址是否相等*/
 /**
  * Definition for singly-linked list.
  * struct ListNode {
