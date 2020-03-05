@@ -29,3 +29,33 @@ public:
         return ret;
     }
 };
+
+/*空间优化后，变成一维vector*/
+class Solution {
+public:
+    vector<double> twoSum(int n) {
+        vector<int> dp(6*n+1);
+        for (int i=1; i<=6; i++) {
+            dp[i] = 1;
+        }
+        for (int i=2; i<=n; i++) {
+            for (int j=6*i; j>=i; j--) {
+                /*因为dp[j]这里本身要为0，所以清空*/
+                dp[j] = 0;
+                for (int k=1; k<=6; k++) {
+                    /*加到i-1就停止*/
+                    if (j-k < i-1) {
+                        break;
+                    }
+                    dp[j] += dp[j-k];
+                }
+            }
+        }
+        int all = pow(6, n);
+        vector<double> ret;
+        for (int l=n; l<=6*n; l++) {
+            ret.push_back(dp[l] * 1.0 / all);
+        }
+        return ret;
+    }
+};
